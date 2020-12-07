@@ -83,10 +83,14 @@ class DoubleLinkedList {
     }
      removeHead(){
          if(!this.head) throw new Error("Empty List");
+        // made changes here.
+         let data = this.head.value
+         
         this.head = this.head.next;
-        this.head.prev = null;
+        
+        if(this.head)  this.head.prev = null;
         this.size--;
-        return;
+        return data;
     }
 
     remove(elem,head=1){
