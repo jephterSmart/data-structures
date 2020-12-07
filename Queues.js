@@ -3,9 +3,10 @@
 * This object has primarily two operator: Enqueue(Adding) and Dequeue.
 *  We can also use Arrays to implement this. JS has already done that for
 * us with the two methods: shift() and push(). Thus viewing the array as a queue.
+* Thus making it an Abstract Data Type.
 */
 "use strict"
-let dllist = require('./DoubleLinkedList');
+const dllist = require('./DoubleLinkedList');
 
 class Queues {
     constructor(){
@@ -27,6 +28,7 @@ class Queues {
     }
     // Remove an element from the front of the queue
     // The neame of this function can alse be poll
+    // This throws error if Queue is empty from the removeHead() method.
     Dequeue(){
         let el = this.queue.removeHead();
         this.front = this.queue.head;
@@ -47,9 +49,10 @@ class Queues {
     }
 }
 
-const que = new Queues(10,15,20);
-que.Enqueue(5,6)
-console.log(que + '');
-que.Dequeue();
-que.Dequeue();
-console.log(que + '', que.size);
+// const que = new Queues(10,15,20);
+// que.Enqueue(5,6)
+// console.log(que + '');
+// que.Dequeue();
+// que.Dequeue();
+// console.log(que + '', que.size);
+module.exports = Queues;
