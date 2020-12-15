@@ -15,10 +15,10 @@ CoalesceHashing.prototype.insert = function(record){
     let key = record.key
     if(typeof key !== 'number') throw new Error('expected a unique numeric key');
     let indexInHashTable = this.hashFunction(key);
-    let newNode = {value:key,next:null};
+    let newNode = {value:key,next:null, record};
     // newNode.__proto__ = null;
      newNode.__proto__.toString = function(){
-        return this.value + '   ' + this.next;
+        return this.value + '-->' + this.record +'   ' + this.next;
      }
     if(this.isIndexEmpty(indexInHashTable)){
         this.hashTable[indexInHashTable] = newNode;
@@ -106,13 +106,5 @@ Object.defineProperty(CoalesceHashing,'capacity',{writable:false,configurable:fa
 
 
 let table = new CoalesceHashing(9);
-table.insert({key:27})
-table.insert({key:18})
-table.insert({key:29})
-table.insert({key:28})
-table.insert({key:39})
-table.insert({key:13})
-table.insert({key:16})
-table.insert({key:42})
-table.insert({key:17})
-console.log(table.hashTable.toString());
+
+module.exports = CoalesceHashing;
