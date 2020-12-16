@@ -52,10 +52,8 @@ class LinearQuotient extends DirectChaining{
         }
     }
     insert(record){
-        if(!record) throw new Error('pass in an object with a key property');
-        if(record && record.key === undefined) throw new Error('record must have unique key property');
-        let key = record.key
-        if(typeof key !== 'number') throw new Error('expected a unique numeric key');
+        this.checkRecord(record);
+        let key = record.key;
         let homeAddress = this.hashFunction(key);
         if(this.isIndexEmpty(homeAddress)) 
         {
@@ -142,20 +140,20 @@ class LinearQuotient extends DirectChaining{
 
 let lQ = new LinearQuotient(9);
 
-lQ.insert({key:27,name:'Jephter'})
-lQ.insert({key:18,name:'Swahile'})
-lQ.insert({key:29,name:"austin"})
-lQ.insert({key:28,name:'eloho'})
-lQ.insert({key:39})
-lQ.insert({key:13})
-lQ.insert({key:16})
-lQ.insert({key:42})
-lQ.insert({key:17})
-console.log(lQ.toString(), lQ.hashTable.length,lQ.capacity);
-console.log(lQ.delete(17));
-console.log(lQ + '')
+// lQ.insert({key:27,name:'Jephter'})
+// lQ.insert({key:18,name:'Swahile'})
+// lQ.insert({key:29,name:"austin"})
+// lQ.insert({key:28,name:'eloho'})
+// lQ.insert({key:39})
+// lQ.insert({key:13})
+// lQ.insert({key:16})
+// lQ.insert({key:42})
 // lQ.insert({key:17})
 // console.log(lQ.toString(), lQ.hashTable.length,lQ.capacity);
-console.log(lQ.find(15));
+// console.log(lQ.delete(17));
+// console.log(lQ + '')
+// // lQ.insert({key:17})
+// // console.log(lQ.toString(), lQ.hashTable.length,lQ.capacity);
+// console.log(lQ.find(15));
 
 module.exports = LinearQuotient;

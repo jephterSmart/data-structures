@@ -10,10 +10,8 @@ function CoalesceHashing(capacity){
 
 //argument to insert function is an object that has a key property
 CoalesceHashing.prototype.insert = function(record){
-    if(!record) throw new Error('pass in an object with a key property');
-    if(record && record.key === undefined) throw new Error('record must have unique key property');
+    this.checkRecord(record);
     let key = record.key
-    if(typeof key !== 'number') throw new Error('expected a unique numeric key');
     let indexInHashTable = this.hashFunction(key);
     let newNode = {value:key,next:null, record};
     // newNode.__proto__ = null;
@@ -56,6 +54,12 @@ CoalesceHashing.prototype.isIndexEmpty = function(indexInHashTable){
 CoalesceHashing.prototype.hashFunction = function(key){
     let result = key % this.capacity;
     return result;
+}
+CoalesceHashing.prototype.checkRecord = function(record){
+    if(!record) throw new Error('pass in an object with a key property');
+    if(record && record.key === undefined) throw new Error('record must have unique key property');
+    let key = record.key;
+    if(typeof key !== 'number') throw new Error('expected a unique numeric key');
 }
 
 //These are static properties and method
