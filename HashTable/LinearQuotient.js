@@ -57,7 +57,11 @@ class LinearQuotient extends DirectChaining{
         let key = record.key
         if(typeof key !== 'number') throw new Error('expected a unique numeric key');
         let homeAddress = this.hashFunction(key);
-        if(this.isIndexEmpty(homeAddress)) this.hashTable[homeAddress] = record;
+        if(this.isIndexEmpty(homeAddress)) 
+        {
+            this.hashTable[homeAddress] = record;
+            return true;
+        }
         else{
             let addressIncrement = this.__probingFunction(key) === 0 ? 1 : this.__probingFunction(key) ;
             this.locationCount = 1;
@@ -153,3 +157,5 @@ console.log(lQ + '')
 // lQ.insert({key:17})
 // console.log(lQ.toString(), lQ.hashTable.length,lQ.capacity);
 console.log(lQ.find(15));
+
+module.exports = LinearQuotient;
